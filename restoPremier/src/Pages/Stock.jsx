@@ -1,12 +1,12 @@
 import React from 'react'
 import MainLayout from '../Components/Templates/MainLayout'
 
-const Home = () => {
+const Stock = () => {
   return (
     <MainLayout>
-        <h1>Home</h1>
+      <h1>Ini stock bahan baku</h1>
     </MainLayout>
   )
 }
 
-export default Home
+export default Stock

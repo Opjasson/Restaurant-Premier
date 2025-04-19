@@ -10,8 +10,8 @@ const Navbar = () => {
               <h1 className="text-xl italic">Stock Resto</h1>
           </div>
           <div className="w-36 flex justify-between">
-              <Link>HOME</Link>
-              <Link>STOCK</Link>
+              <Link to={"/"}>HOME</Link>
+              <Link to={"/stock"}>STOCK</Link>
           </div>
       </nav>
   );
