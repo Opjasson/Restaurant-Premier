@@ -9,7 +9,7 @@ const Stock = () => {
         <MainLayout>
             <div className="flex justify-between items-center w-full">
                 <h1 className="lg:text-2xl text-sm text-blue-500">
-                    Daftar Stock
+                    Barang Masuk
                 </h1>
 
                 <div className="flex lg:w-[30rem] w-60 justify-between">

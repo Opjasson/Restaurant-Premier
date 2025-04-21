@@ -30,26 +30,16 @@ const Navbar = () => {
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
                     to={"/"}>
-                    HOME
-                </Link>
-                <Link
-                    className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
-                    to={"/stock"}>
-                    STOCK AWAL
-                </Link>
-                <Link
-                    className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
-                    to={"/stock"}>
                     BARANG MASUK
                 </Link>
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
-                    to={"/stock"}>
+                    to={"/Barang-keluar"}>
                     BARANG KELUAR
                 </Link>
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
-                    to={"/stock"}>
+                    to={"/Stock-akhir"}>
                     STOCK AKHIR
                 </Link>
             </div>
@@ -60,39 +50,25 @@ const Navbar = () => {
             <div
                 hidden
                 id="dropDown"
-                className="bg-slate-600 p-5 rounded-bl-lg rounded-tl-lg absolute top-16 right-0 h-2/3 w-60 list-none ">
+                className="bg-slate-600 p-5 rounded-bl-lg rounded-tl-lg absolute top-16 right-0 h-2/3 w-60 list-none lg:hidden">
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
                         to={"/"}>
-                        HOME
-                    </Link>
-                </li>
-                <li className="mb-10">
-                    <Link
-                        className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/stock"}>
-                        STOCK AWAL
-                    </Link>
-                </li>
-                <li className="mb-10">
-                    <Link
-                        className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/stock"}>
                         BARANG MASUK
                     </Link>
                 </li>
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/stock"}>
+                        to={"/"}>
                         BARANG KELUAR
                     </Link>
                 </li>
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/stock"}>
+                        to={"/"}>
                         STOCK AKHIR
                     </Link>
                 </li>
