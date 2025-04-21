@@ -1,10 +1,11 @@
 import React from 'react'
+import MainLayout from '../Components/Templates/MainLayout'
 
 const DetailStock = () => {
   return (
-    <div>
-      
-    </div>
+    <MainLayout>
+      <h1>Haloo</h1>
+    </MainLayout>
   )
 }
 

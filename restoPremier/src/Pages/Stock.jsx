@@ -1,9 +1,10 @@
 import React from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 const Stock = () => {
+    const navigate = useNavigate()
     return (
         <MainLayout>
             <div className="flex justify-between items-center w-full">
@@ -35,7 +36,7 @@ const Stock = () => {
                     <h2>Tanggal Masuk</h2>
                 </div>
 
-                <div className="flex justify-between px-5 py-3 lg:text-lg text-sm font-extralight mt-2">
+                <div onClick={() => navigate("/Detail-stock")} className="flex justify-between hover:cursor-pointer px-5 py-3 lg:text-lg text-sm font-extralight mt-2">
                     <h2>Nama stock</h2>
                     <h2>Jumlah</h2>
                     <h2>Catatan</h2>
