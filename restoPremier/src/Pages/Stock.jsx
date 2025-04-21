@@ -21,7 +21,7 @@ const Stock = () => {
                         <FaMagnifyingGlass className="lg:text-2xl" />
                     </div>
 
-                    <Link className="bg-blue-500 lg:px-2 px-3 lg:py-1.5 rounded-xl text-white lg:text-base text-sm">
+                    <Link to={"/Add-stock"} className="bg-blue-500 hover:bg-blue-600 lg:px-2 px-3 lg:py-1.5 rounded-xl text-white lg:text-base text-sm">
                         + Tambah
                     </Link>
                 </div>
