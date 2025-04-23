@@ -3,30 +3,37 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const barangMasuk = db.define("barangMasuk", {
-    namaBarang: {
+const data_Stock = db.define("data_stock", {
+    nama_Barang: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             notEmpty: true,
         },
     },
-    jumlah: {
+    stok_awal: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             notEmpty: true,
         },
     },
-    deskripsi: {
-        type: DataTypes.TEXT,
+    barang_masuk: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             notEmpty: true,
         },
     },
-    tanggalMasuk: {
-        type: DataTypes.DATE,
+    barang_keluar: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+    },
+    stok_akhir: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             notEmpty: true,
@@ -34,4 +41,4 @@ const barangMasuk = db.define("barangMasuk", {
     },
 });
 
-export default barangMasuk;
+export default data_Stock;
