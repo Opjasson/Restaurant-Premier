@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Stock = () => {
-    const navigate = useNavigate()
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
+
+    const getData = async () => {
+        try {
+            const response = await axios.get("http://localhost:8000/stock");
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
     return (
         <MainLayout>
             <div className="flex justify-between items-center w-full">
@@ -31,25 +46,27 @@ const Stock = () => {
             </div>
 
             <div className="mt-7">
-                <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-sm text-white font-bold">
+                <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-sm text-white font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
-                    <h2>Nama barang</h2>
-                    <h2>Stock awal</h2>
-                    <h2>Barang masuk</h2>
-                    <h2>Barang keluar</h2>
-                    <h2>Stock akhir</h2>
+                    <h2 className=" w-32">Nama barang</h2>
+                    <h2 className=" w-32">Stock awal</h2>
+                    <h2 className=" w-32">Barang masuk</h2>
+                    <h2 className=" w-32">Barang keluar</h2>
+                    <h2 className=" w-32">Stock akhir</h2>
                 </div>
 
-                <div
-                    onClick={() => navigate("/Detail-stock")}
-                    className="flex justify-between hover:cursor-pointer px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border">
-                    <h2>No</h2>
-                    <h2>Nama barang</h2>
-                    <h2>Stock awal</h2>
-                    <h2>Barang masuk</h2>
-                    <h2>Barang keluar</h2>
-                    <h2>Stock akhir</h2>
-                </div>
+                {data.map((item, index) => (
+                    <div
+                        onClick={() => navigate("/Detail-stock")}
+                        className="flex justify-between hover:cursor-pointer px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
+                        <h2 className="">{index + 1}</h2>
+                        <h2 className=" w-32 ml-3">{item.nama_Barang}</h2>
+                        <h2 className=" w-32">{item.stok_awal}</h2>
+                        <h2 className=" w-32">{item.barang_masuk}</h2>
+                        <h2 className=" w-32">{item.barang_keluar}</h2>
+                        <h2 className=" w-32">{item.stok_akhir}</h2>
+                    </div>
+                ))}
             </div>
         </MainLayout>
     );
