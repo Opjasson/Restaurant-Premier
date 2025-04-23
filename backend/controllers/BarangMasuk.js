@@ -15,3 +15,7 @@ export const createData = async (req, res) => {
         res.status(400).json({msg: "Internal server error!"})
     }
 }
+
+// export const getData_Stock = async (req, res) => {
+//     const 
+// }
