@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-import barangMasuk from "./model/Model_Stock.js";
+import data_Stock from  "./model/Model_Stock.js";
 
 // (async () => {
-//     await barangMasuk.sync();
+//     await data_Stock.sync();
 // })();
 
 const app = express();
