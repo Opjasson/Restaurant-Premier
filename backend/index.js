@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import barangMasuk from "./model/Model_BarangMasuk.js";
+import barangMasuk from "./model/Model_Stock.js";
 
 // (async () => {
 //     await barangMasuk.sync();
