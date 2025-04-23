@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import data_Stock from "./model/Model_Stock.js";
+import stockRouter from "./routers/dataStock_Route.js"
+
 
 // (async () => {
 //     await data_Stock.sync();
@@ -8,7 +10,8 @@ import data_Stock from "./model/Model_Stock.js";
 dotenv.config();
 const app = express();
 
-
+app.use(express.json());
+app.use(stockRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`server running on port http://localhost:${process.env.PORT}`);
