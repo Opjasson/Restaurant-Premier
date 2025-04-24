@@ -1,5 +1,5 @@
 import express from "express"
-import { createData, getData_Stock } from "../controllers/BarangMasuk.js"
+import { createData, getData_Stock } from "../controllers/data_Stock.js"
 
 
 
