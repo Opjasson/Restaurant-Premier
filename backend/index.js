@@ -7,6 +7,7 @@ import cors from "cors"
 // (async () => {
 //     await data_Stock.sync();
 // })();
+
 dotenv.config();
 const app = express();
 
