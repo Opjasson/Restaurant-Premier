@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -6,21 +6,29 @@ import { useParams } from "react-router-dom";
 const DetailStock = () => {
     const [data, setData] = useState({});
     const { id } = useParams();
+    const [namaBarang, setNamaBarang] = useState("");
+    const [stokAwal, setStokAwal] = useState(0);
+    const [barangMasuk, setBarangMasuk] = useState(0);
+    const [barangKeluar, setBarangKeluar] = useState(0);
+    const [stokAkhir, setStokAkhir] = useState(0);
 
-    const getData = async () => {
+    const getData = useCallback(async () => {
         try {
             const stock = await axios.get(`http://localhost:8000/stock/${id}`);
             setData(stock.data);
         } catch (error) {
             console.log(error);
         }
+    }, [id, setData]);
+
+    const handleUpdate = async () => {
+        await axios.post("")
     };
 
     useEffect(() => {
-        getData()
-    }, {})
+        getData();
+    }, [getData]);
     // console.log(data);
-    
 
     return (
         <MainLayout>
@@ -40,21 +48,21 @@ const DetailStock = () => {
                         Nama Stock
                     </label>
                     <select
-                        name=""
-                        id="namaStock"
+                        onChange={(e) => setNamaBarang(e.target.value)}
+
                         className="border md:p-2 p-1.5 rounded-xl">
                         <option value={data.nama_Barang}>
                             {data.nama_Barang}
                         </option>
-                        <option value="">Tepung Terigu</option>
-                        <option value="">Kecap Bango</option>
-                        <option value="">Beras</option>
-                        <option value="">Tepung Kanji</option>
-                        <option value="">Tepung Beras</option>
-                        <option value="">Ayam</option>
-                        <option value="">Telor</option>
-                        <option value="">Tempe</option>
-                        <option value="">Tahu</option>
+                        <option value="Tepung Terigu">Tepung Terigu</option>
+                        <option value="Kecap Bango">Kecap Bango</option>
+                        <option value="Beras">Beras</option>
+                        <option value="Tepung Kanji">Tepung Kanji</option>
+                        <option value="Tepung Beras">Tepung Beras</option>
+                        <option value="Ayam">Ayam</option>
+                        <option value="Telor">Telor</option>
+                        <option value="Tempe">Tempe</option>
+                        <option value="Tahu">Tahu</option>
                     </select>
                 </div>
 
@@ -66,7 +74,8 @@ const DetailStock = () => {
                         id="namaStock"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
-                        value={data.stok_awal}
+                        value={stokAwal}
+                        onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>
 
@@ -80,7 +89,8 @@ const DetailStock = () => {
                         id="barangMasuk"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
-                        value={data.barang_masuk}
+                        value={barangMasuk}
+                        onChange={(e) => setBarangMasuk(e.target.value)}
                     />
                 </div>
 
@@ -94,7 +104,8 @@ const DetailStock = () => {
                         id="barangKeluar"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
-                        value={data.barang_keluar}
+                        value={barangKeluar}
+                        onChange={(e) => setBarangKeluar(e.target.value)}
                     />
                 </div>
 
@@ -106,7 +117,8 @@ const DetailStock = () => {
                         id="stokAkhir"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
-                        value={data.stok_akhir}
+                        value={stokAkhir}
+                        onChange={(e) => setStokAkhir(e.target.value)}
                     />
                 </div>
 

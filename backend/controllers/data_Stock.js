@@ -51,3 +51,24 @@ export const getDataByID_Stock = async (req, res) => {
         res.status(400).json({msg : "Internal server error"})
     }
 }
+
+export const updateData_Stock = async (req, res) => {
+    try {
+        const dataStock = await data_Stock.findOne({
+            where: {
+                id : req.params.id
+            }
+        })
+        const {nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir} = req.body
+        await data_Stock.update({
+            nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir
+        }, {
+            where: {
+                id: dataStock.id
+            }
+        })
+        res.status(200).json({msg : "data berhasil dirubah!"})
+    } catch (error) {
+        res.status(404).json({"msg" : error.message});
+    }
+}
