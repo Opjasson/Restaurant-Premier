@@ -13,30 +13,30 @@ const data_Stock = db.define("data_stock", {
     },
     stok_awal: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
         },
     },
     barang_masuk: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
         },
     },
     barang_keluar: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
         },
     },
     stok_akhir: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate: {
-            notEmpty: true,
+            notEmpty: false,
         },
     },
 });
