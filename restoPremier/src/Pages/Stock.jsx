@@ -59,7 +59,7 @@ const Stock = () => {
                     <div
                         onClick={() => navigate(`Detail-stock/${item.id}`)}
                         className="flex justify-between hover:cursor-pointer px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
-                        <h2 className="">{index + 1}</h2>
+                        <h2 key={index + 1} className="">{index + 1}</h2>
                         <h2 className=" w-32 ml-3">{item.nama_Barang}</h2>
                         <h2 className=" w-32">{item.stok_awal}</h2>
                         <h2 className=" w-32">{item.barang_masuk}</h2>
