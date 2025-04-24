@@ -35,3 +35,19 @@ export const getData_Stock = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 };
+
+
+export const getDataByID_Stock = async (req, res) => {
+    try {
+        const stock = await data_Stock.findOne({
+            where: {
+                id : req.params.id
+            }
+        })
+        if (!stock) return res.status(404).json({msg : "Data tidak ada!"})
+        
+        res.status(200).json(stock)
+    } catch (error) {
+        res.status(400).json({msg : "Internal server error"})
+    }
+}
