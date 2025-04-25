@@ -6,6 +6,8 @@ import axios from "axios";
 
 const Stock = () => {
     const [data, setData] = useState([]);
+    const [findLower, setfindLower] = useState("");
+
     const navigate = useNavigate();
 
     const getData = async () => {
@@ -20,6 +22,13 @@ const Stock = () => {
     useEffect(() => {
         getData();
     }, []);
+
+    // filter data berdasaran hasil search
+    const filterNama = data.filter((item) => {
+        const words = findLower.split(" ");
+        return words.some((word) => item.nama_Barang.includes(word));
+    });
+    
     return (
         <MainLayout>
             <div className="flex justify-between items-center w-full">
@@ -33,6 +42,7 @@ const Stock = () => {
                             type="text"
                             placeholder="Cari nama..."
                             className="outline-none w-full text-sm"
+                            onChange={(e) => setfindLower(e.target.value)}
                         />
                         <FaMagnifyingGlass className="lg:text-2xl" />
                     </div>
@@ -55,14 +65,14 @@ const Stock = () => {
                     <h2 className=" w-32">Stock akhir</h2>
                 </div>
 
-                {data.map((item, index) => (
+                {filterNama.map((item, index) => (
                     <div
                         onClick={() => navigate(`Detail-stock/${item.id}`)}
                         className="flex justify-between hover:cursor-pointer hover:bg-slate-300 px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
                         <h2 key={index + 1} className="">
                             {index + 1}
                         </h2>
-                        <h2 className=" w-40 ml-3">
+                        <h2 className=" w-40 ml-3 capitalize">
                             {[
                                 "Tepung Terigu",
                                 "Beras",

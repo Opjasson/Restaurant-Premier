@@ -6,10 +6,10 @@ import { useParams, useNavigate } from "react-router-dom";
 const DetailStock = () => {
     const { id } = useParams();
     const [namaBarang, setNamaBarang] = useState("");
-    const [stokAwal, setStokAwal] = useState();
-    const [barangMasuk, setBarangMasuk] = useState();
-    const [barangKeluar, setBarangKeluar] = useState();
-    const [stokAkhir, setStokAkhir] = useState();
+    const [stokAwal, setStokAwal] = useState(0);
+    const [barangMasuk, setBarangMasuk] = useState(0);
+    const [barangKeluar, setBarangKeluar] = useState(0);
+    const [stokAkhir, setStokAkhir] = useState(0);
 
     const navigate = useNavigate();
 
@@ -69,15 +69,15 @@ const DetailStock = () => {
                         onChange={(e) => setNamaBarang(e.target.value)}
                         className="border md:p-2 p-1.5 rounded-xl">
                         <option value={namaBarang}>{namaBarang}</option>
-                        <option value="Tepung Terigu">Tepung Terigu</option>
-                        <option value="Kecap Bango">Kecap Bango</option>
-                        <option value="Beras">Beras</option>
-                        <option value="Tepung Kanji">Tepung Kanji</option>
-                        <option value="Tepung Beras">Tepung Beras</option>
-                        <option value="Ayam">Ayam</option>
-                        <option value="Telor">Telor</option>
-                        <option value="Tempe">Tempe</option>
-                        <option value="Tahu">Tahu</option>
+                        <option value="tepung terigu">Tepung Terigu</option>
+                        <option value="kecap bango">Kecap Bango</option>
+                        <option value="beras">Beras</option>
+                        <option value="tepung kanji">Tepung Kanji</option>
+                        <option value="tepung beras">Tepung Beras</option>
+                        <option value="ayam">Ayam</option>
+                        <option value="telor">Telor</option>
+                        <option value="tempe">Tempe</option>
+                        <option value="tahu">Tahu</option>
                     </select>
                 </div>
 
@@ -126,14 +126,24 @@ const DetailStock = () => {
 
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="stokAkhir">
-                        Stok akhir <span className="text-sm text-red-500">*Otomatis terisi</span>
+                        Stok akhir{" "}
+                        <span className="text-sm text-red-500">
+                            *Otomatis terisi
+                        </span>
                     </label>
                     <input
                         disabled
                         id="stokAkhir"
                         className="border rounded-xl p-1.5 md:p-2 bg-slate-300"
                         type="number"
-                        value={stokAkhir}
+                        value={
+                            parseInt(stokAwal) +
+                            parseInt(barangMasuk) -
+                            parseInt(barangKeluar)
+                        }
+                        onChange={(e) => setStokAkhir(
+                            e.target.value
+                        )}
                     />
                 </div>
 

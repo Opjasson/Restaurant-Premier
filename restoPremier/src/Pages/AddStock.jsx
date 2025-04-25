@@ -1,9 +1,34 @@
 import React, { useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddStock = () => {
-    const [namaStock, setNamaStock] = useState("")
+    const [nama_Barang, setNamaBarang] = useState("");
+    const [stok_awal, setStokAwal] = useState();
+    const [barangMasuk, setBarangMasuk] = useState(0);
+    const [barangKeluar, setBarangKeluar] = useState(0);
+    const [stokAkhir, setStokAkhir] = useState(0);
 
+    const navigate = useNavigate()
+
+    const handleAddStock = async (e) => {
+        e.preventDefault()
+        try {
+            await axios.post("http://localhost:8000/stock", {
+                nama_Barang,
+                stok_awal,
+                barang_masuk: 0,
+                barang_keluar: 0,
+                stok_akhir: 0
+            });
+            alert("Stock berhasil ditambahkan!")
+            navigate("/")
+        } catch (error) {
+            console.log(error);
+        }
+        
+    };
 
     return (
         <MainLayout>
@@ -18,25 +43,25 @@ const AddStock = () => {
 
             {/* Form Start */}
             <form
-                action=""
+                onSubmit={handleAddStock}
                 className="flex flex-col gap-5 md:w-2/3 mx-auto pb-20">
                 <div className="flex flex-col md:gap-2">
                     <label htmlFor="namaStock" className="md:text-xl text-base">
                         Nama Stock
                     </label>
                     <select
-                        name=""
+                        onChange={(e) => setNamaBarang(e.target.value)}
                         id="namaStock"
                         className="border md:p-2 p-1.5 rounded-xl">
-                        <option value="">Tepung Terigu</option>
-                        <option value="">Kecap Bango</option>
-                        <option value="">Beras</option>
-                        <option value="">Tepung Kanji</option>
-                        <option value="">Tepung Beras</option>
-                        <option value="">Ayam</option>
-                        <option value="">Telor</option>
-                        <option value="">Tempe</option>
-                        <option value="">Tahu</option>
+                        <option value="Tepung Terigu">Tepung Terigu</option>
+                        <option value="Kecap Bango">Kecap Bango</option>
+                        <option value="Beras">Beras</option>
+                        <option value="Tepung Kanji">Tepung Kanji</option>
+                        <option value="Tepung Beras">Tepung Beras</option>
+                        <option value="Ayam">Ayam</option>
+                        <option value="Telor">Telor</option>
+                        <option value="Tempe">Tempe</option>
+                        <option value="Tahu">Tahu</option>
                     </select>
                 </div>
 
@@ -48,7 +73,7 @@ const AddStock = () => {
                         id="namaStock"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
-                        // onChange={(e) => setStokAwal(e.target.value)}
+                        onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>
 
