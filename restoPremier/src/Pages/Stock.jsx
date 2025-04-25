@@ -48,7 +48,7 @@ const Stock = () => {
             <div className="mt-7">
                 <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-sm text-white font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
-                    <h2 className=" w-32">Nama barang</h2>
+                    <h2 className=" w-40">Nama barang</h2>
                     <h2 className=" w-32">Stock awal</h2>
                     <h2 className=" w-32">Barang masuk</h2>
                     <h2 className=" w-32">Barang keluar</h2>
@@ -58,9 +58,21 @@ const Stock = () => {
                 {data.map((item, index) => (
                     <div
                         onClick={() => navigate(`Detail-stock/${item.id}`)}
-                        className="flex justify-between hover:cursor-pointer px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
-                        <h2 key={index + 1} className="">{index + 1}</h2>
-                        <h2 className=" w-32 ml-3">{item.nama_Barang}</h2>
+                        className="flex justify-between hover:cursor-pointer hover:bg-slate-300 px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
+                        <h2 key={index + 1} className="">
+                            {index + 1}
+                        </h2>
+                        <h2 className=" w-40 ml-3">
+                            {[
+                                "Tepung Terigu",
+                                "Beras",
+                                "Tepung Kanji",
+                                "Tepung Beras",
+                                "Telor",
+                            ].includes(item.nama_Barang)
+                                ? item.nama_Barang + " */Kg"
+                                : item.nama_Barang + " */pcs"}
+                        </h2>
                         <h2 className=" w-32">{item.stok_awal}</h2>
                         <h2 className=" w-32">{item.barang_masuk}</h2>
                         <h2 className=" w-32">{item.barang_keluar}</h2>
