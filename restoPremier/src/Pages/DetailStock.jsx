@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const DetailStock = () => {
-    const [data, setData] = useState({});
     const { id } = useParams();
     const [namaBarang, setNamaBarang] = useState("");
     const [stokAwal, setStokAwal] = useState();
@@ -12,7 +11,7 @@ const DetailStock = () => {
     const [barangKeluar, setBarangKeluar] = useState();
     const [stokAkhir, setStokAkhir] = useState();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
@@ -42,14 +41,12 @@ const DetailStock = () => {
                 barang_keluar: barangKeluar,
                 stok_akhir: stokAkhir,
             });
-            alert("Data berhasil dirubah")
-            navigate("/")
+            alert("Data berhasil dirubah");
+            navigate("/");
         } catch (error) {
             console.log(error);
         }
     };
-
-    // console.log(data);
 
     return (
         <MainLayout>
@@ -129,14 +126,14 @@ const DetailStock = () => {
 
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="stokAkhir">
-                        Stok akhir
+                        Stok akhir <span className="text-sm text-red-500">*Otomatis terisi</span>
                     </label>
                     <input
+                        disabled
                         id="stokAkhir"
-                        className="border rounded-xl p-1.5 md:p-2"
+                        className="border rounded-xl p-1.5 md:p-2 bg-slate-300"
                         type="number"
                         value={stokAkhir}
-                        onChange={(e) => setStokAkhir(e.target.value)}
                     />
                 </div>
 
