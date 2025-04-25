@@ -1,33 +1,54 @@
 import React, { useCallback, useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const DetailStock = () => {
     const [data, setData] = useState({});
     const { id } = useParams();
     const [namaBarang, setNamaBarang] = useState("");
-    const [stokAwal, setStokAwal] = useState(0);
-    const [barangMasuk, setBarangMasuk] = useState(0);
-    const [barangKeluar, setBarangKeluar] = useState(0);
-    const [stokAkhir, setStokAkhir] = useState(0);
+    const [stokAwal, setStokAwal] = useState();
+    const [barangMasuk, setBarangMasuk] = useState();
+    const [barangKeluar, setBarangKeluar] = useState();
+    const [stokAkhir, setStokAkhir] = useState();
 
-    const getData = useCallback(async () => {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const stock = await axios.get(
+                    `http://localhost:8000/stock/${id}`
+                );
+                setNamaBarang(stock.data.nama_Barang);
+                setStokAwal(stock.data.stok_awal);
+                setBarangMasuk(stock.data.barang_masuk);
+                setBarangKeluar(stock.data.barang_keluar);
+                setStokAkhir(stock.data.stok_akhir);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+    }, [id]);
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
         try {
-            const stock = await axios.get(`http://localhost:8000/stock/${id}`);
-            setData(stock.data);
+            await axios.patch(`http://localhost:8000/stock/${id}`, {
+                nama_Barang: namaBarang,
+                stok_awal: stokAwal,
+                barang_masuk: barangMasuk,
+                barang_keluar: barangKeluar,
+                stok_akhir: stokAkhir,
+            });
+            alert("Data berhasil dirubah")
+            navigate("/")
         } catch (error) {
             console.log(error);
         }
-    }, [id, setData]);
-
-    const handleUpdate = async () => {
-        await axios.post("")
     };
 
-    useEffect(() => {
-        getData();
-    }, [getData]);
     // console.log(data);
 
     return (
@@ -41,7 +62,7 @@ const DetailStock = () => {
 
             {/* Form Start */}
             <form
-                action=""
+                onSubmit={handleUpdate}
                 className="flex flex-col gap-5 md:w-2/3 mx-auto pb-20">
                 <div className="flex flex-col md:gap-2">
                     <label htmlFor="namaStock" className="md:text-xl text-base">
@@ -49,11 +70,8 @@ const DetailStock = () => {
                     </label>
                     <select
                         onChange={(e) => setNamaBarang(e.target.value)}
-
                         className="border md:p-2 p-1.5 rounded-xl">
-                        <option value={data.nama_Barang}>
-                            {data.nama_Barang}
-                        </option>
+                        <option value={namaBarang}>{namaBarang}</option>
                         <option value="Tepung Terigu">Tepung Terigu</option>
                         <option value="Kecap Bango">Kecap Bango</option>
                         <option value="Beras">Beras</option>

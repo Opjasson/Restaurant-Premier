@@ -1,7 +1,7 @@
 import data_Stock from "../model/Model_Stock.js";
 
 export const createData = async (req, res) => {
-    const { nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir } =
+    const { nama_Barang, stok_awal, barang_masuk, barang_keluar } =
         req.body;
     try {
         await data_Stock.create({
@@ -9,7 +9,7 @@ export const createData = async (req, res) => {
             stok_awal,
             barang_masuk,
             barang_keluar,
-            stok_akhir,
+            stok_akhir : stok_awal + barang_masuk - barang_keluar,
         });
         res.status(200).json({ msg: "Data berhasil ditambahkan!" });
     } catch (error) {
@@ -59,9 +59,9 @@ export const updateData_Stock = async (req, res) => {
                 id : req.params.id
             }
         })
-        const {nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir} = req.body
+        const {nama_Barang, stok_awal, barang_masuk, barang_keluar} = req.body
         await data_Stock.update({
-            nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir
+            nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir : stok_awal + barang_masuk - barang_keluar
         }, {
             where: {
                 id: dataStock.id
