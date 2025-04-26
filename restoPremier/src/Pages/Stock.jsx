@@ -7,6 +7,7 @@ import axios from "axios";
 const Stock = () => {
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("");
+    const [filteredData, setFilteredData] = useState([]);
 
     const navigate = useNavigate();
 
@@ -23,18 +24,32 @@ const Stock = () => {
         getData();
     }, []);
 
+    var date = new Date();
+
+    let dataTerkini = date.toISOString().split("T")[0];
+
+    // console.log(dataTerkini);
+
     // filter data berdasaran hasil search
     const filterNama = data.filter((item) => {
         const words = findLower.split(" ");
         return words.some((word) => item.nama_Barang.includes(word));
     });
+
+    const lengthData = filterNama.filter((cek) =>
+                    cek.createdAt.split("T"[0] === dataTerkini)
+                )
+    
     
     return (
         <MainLayout>
             <div className="flex justify-between items-center w-full">
-                <h1 className="lg:text-2xl text-sm text-blue-500">
-                    Stock barang
-                </h1>
+                <div>
+                    <h1 className="lg:text-2xl text-sm text-blue-500">
+                        Stock barang
+                    </h1>
+                    <p>{date.toISOString().split("T")[0]}</p>
+                </div>
 
                 <div className="flex lg:w-[30rem] w-60 justify-between">
                     <div className="flex items-center bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm lg:w-80 w-[55%]">
@@ -65,30 +80,41 @@ const Stock = () => {
                     <h2 className=" w-32">Stock akhir</h2>
                 </div>
 
-                {filterNama.map((item, index) => (
-                    <div
-                        onClick={() => navigate(`Detail-stock/${item.id}`)}
-                        className="flex justify-between hover:cursor-pointer hover:bg-slate-300 px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
-                        <h2 key={index + 1} className="">
-                            {index + 1}
-                        </h2>
-                        <h2 className=" w-40 ml-3 capitalize">
-                            {[
-                                "Tepung Terigu",
-                                "Beras",
-                                "Tepung Kanji",
-                                "Tepung Beras",
-                                "Telor",
-                            ].includes(item.nama_Barang)
-                                ? item.nama_Barang + " */Kg"
-                                : item.nama_Barang + " */pcs"}
-                        </h2>
-                        <h2 className=" w-32">{item.stok_awal}</h2>
-                        <h2 className=" w-32">{item.barang_masuk}</h2>
-                        <h2 className=" w-32">{item.barang_keluar}</h2>
-                        <h2 className=" w-32">{item.stok_akhir}</h2>
-                    </div>
-                ))}
+                {lengthData.length > 0 ? (
+                    filterNama
+                        .filter(
+                            (a) => a.createdAt.split("T")[0] === dataTerkini
+                        )
+                        .map((item, index) => (
+                            <div
+                                onClick={() =>
+                                    navigate(`Detail-stock/${item.id}`)
+                                }
+                                className="flex justify-between hover:cursor-pointer hover:bg-slate-300 px-5 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400">
+                                <h2 key={index + 1} className="">
+                                    {index + 1}
+                                </h2>
+                                <h2 className=" w-40 ml-3 capitalize">
+                                    {[
+                                        "tepung terigu",
+                                        "beras",
+                                        "tepung kanji",
+                                        "tepung beras",
+                                        "telor",
+                                        "ayam",
+                                    ].includes(item.nama_Barang)
+                                        ? item.nama_Barang + " */Kg"
+                                        : item.nama_Barang + " */pcs"}
+                                </h2>
+                                <h2 className=" w-32">{item.stok_awal}</h2>
+                                <h2 className=" w-32">{item.barang_masuk}</h2>
+                                <h2 className=" w-32">{item.barang_keluar}</h2>
+                                <h2 className=" w-32">{item.stok_akhir}</h2>
+                            </div>
+                        ))
+                ) : (
+                    <div>belum ada data</div>
+                )}
             </div>
         </MainLayout>
     );

@@ -53,15 +53,15 @@ const AddStock = () => {
                         onChange={(e) => setNamaBarang(e.target.value)}
                         id="namaStock"
                         className="border md:p-2 p-1.5 rounded-xl">
-                        <option value="Tepung Terigu">Tepung Terigu</option>
-                        <option value="Kecap Bango">Kecap Bango</option>
-                        <option value="Beras">Beras</option>
-                        <option value="Tepung Kanji">Tepung Kanji</option>
-                        <option value="Tepung Beras">Tepung Beras</option>
-                        <option value="Ayam">Ayam</option>
-                        <option value="Telor">Telor</option>
-                        <option value="Tempe">Tempe</option>
-                        <option value="Tahu">Tahu</option>
+                        <option value="tepung terigu">Tepung Terigu</option>
+                        <option value="kecap bango">Kecap Bango</option>
+                        <option value="beras">Beras</option>
+                        <option value="tepung kanji">Tepung Kanji</option>
+                        <option value="tepung beras">Tepung Beras</option>
+                        <option value="ayam">Ayam</option>
+                        <option value="telor">Telor</option>
+                        <option value="tempe">Tempe</option>
+                        <option value="tahu">Tahu</option>
                     </select>
                 </div>
 

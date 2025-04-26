@@ -30,17 +30,17 @@ const Navbar = () => {
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
                     to={"/"}>
-                    BARANG MASUK
+                    STOCK BARANG
                 </Link>
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
                     to={"/Barang-keluar"}>
-                    BARANG KELUAR
+                    ANALISIS CHART
                 </Link>
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
                     to={"/Stock-akhir"}>
-                    STOCK AKHIR
+                    SEMUA DATA
                 </Link>
             </div>
 
