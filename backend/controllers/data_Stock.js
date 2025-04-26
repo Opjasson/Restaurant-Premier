@@ -1,11 +1,12 @@
 import data_Stock from "../model/Model_Stock.js";
 
 export const createData = async (req, res) => {
-    const { nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir } =
+    const { nama_Barang ,satuan ,stok_awal, barang_masuk, barang_keluar, stok_akhir } =
         req.body;
     try {
         await data_Stock.create({
             nama_Barang,
+            satuan,
             stok_awal,
             barang_masuk,
             barang_keluar,

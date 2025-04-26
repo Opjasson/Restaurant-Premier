@@ -11,6 +11,13 @@ const data_Stock = db.define("data_stock", {
             notEmpty: true,
         },
     },
+    satuan: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+    },
     stok_awal: {
         type: DataTypes.INTEGER,
         allowNull: true,

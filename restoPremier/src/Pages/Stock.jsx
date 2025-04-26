@@ -74,6 +74,7 @@ const Stock = () => {
                 <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-sm text-white font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
                     <h2 className=" w-40">Nama barang</h2>
+                    <h2 className=" w-32">Satuan</h2>
                     <h2 className=" w-32">Stock awal</h2>
                     <h2 className=" w-32">Barang masuk</h2>
                     <h2 className=" w-32">Barang keluar</h2>
@@ -106,10 +107,11 @@ const Stock = () => {
                                         ? item.nama_Barang + " */Kg"
                                         : item.nama_Barang + " */pcs"}
                                 </h2>
-                                <h2 className=" w-32">{item.stok_awal}</h2>
-                                <h2 className=" w-32">{item.barang_masuk}</h2>
-                                <h2 className=" w-32">{item.barang_keluar}</h2>
-                                <h2 className=" w-32">{item.stok_akhir}</h2>
+                                <h2 className="w-32">Kg</h2>
+                                <h2 className="w-32">{item.stok_awal}</h2>
+                                <h2 className="w-32">{item.barang_masuk}</h2>
+                                <h2 className="w-32">{item.barang_keluar}</h2>
+                                <h2 className="w-32">{item.stok_akhir}</h2>
                             </div>
                         ))
                 ) : (
