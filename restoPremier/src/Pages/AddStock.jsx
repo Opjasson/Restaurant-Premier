@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AddStock = () => {
     const [nama_Barang, setNamaBarang] = useState("");
     const [stok_awal, setStokAwal] = useState();
-    const [barangMasuk, setBarangMasuk] = useState(0);
-    const [barangKeluar, setBarangKeluar] = useState(0);
-    const [stokAkhir, setStokAkhir] = useState(0);
+    const [satuan, setSatuan] = useState(0);
 
     const navigate = useNavigate()
 
@@ -17,6 +15,7 @@ const AddStock = () => {
         try {
             await axios.post("http://localhost:8000/stock", {
                 nama_Barang,
+                satuan,
                 stok_awal,
                 barang_masuk: 0,
                 barang_keluar: 0,
@@ -63,6 +62,18 @@ const AddStock = () => {
                         <option value="tempe">Tempe</option>
                         <option value="tahu">Tahu</option>
                     </select>
+                </div>
+
+                <div className="flex flex-col md:gap-2">
+                    <label className="md:text-xl text-base" htmlFor="satuan">
+                        Satuan
+                    </label>
+                    <input
+                        id="satuan"
+                        className="border rounded-xl p-1.5 md:p-2"
+                        type="text"
+                        onChange={(e) => setSatuan(e.target.value)}
+                    />
                 </div>
 
                 <div className="flex flex-col md:gap-2">

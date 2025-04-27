@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 const DetailStock = () => {
     const { id } = useParams();
     const [namaBarang, setNamaBarang] = useState("");
+    const [satuan, setSatuan] = useState("");
     const [stokAwal, setStokAwal] = useState(0);
     const [barangMasuk, setBarangMasuk] = useState(0);
     const [barangKeluar, setBarangKeluar] = useState(0);
@@ -20,6 +21,7 @@ const DetailStock = () => {
                     `http://localhost:8000/stock/${id}`
                 );
                 setNamaBarang(stock.data.nama_Barang);
+                setSatuan(stock.data.satuan);
                 setStokAwal(stock.data.stok_awal);
                 setBarangMasuk(stock.data.barang_masuk);
                 setBarangKeluar(stock.data.barang_keluar);
@@ -36,6 +38,7 @@ const DetailStock = () => {
         try {
             await axios.patch(`http://localhost:8000/stock/${id}`, {
                 nama_Barang: namaBarang,
+                satuan: satuan,
                 stok_awal: stokAwal,
                 barang_masuk: barangMasuk,
                 barang_keluar: barangKeluar,
@@ -47,6 +50,9 @@ const DetailStock = () => {
             console.log(error);
         }
     };
+
+    console.log(satuan);
+    
 
     return (
         <MainLayout>
@@ -79,6 +85,19 @@ const DetailStock = () => {
                         <option value="tempe">Tempe</option>
                         <option value="tahu">Tahu</option>
                     </select>
+                </div>
+
+                <div className="flex flex-col md:gap-2">
+                    <label className="md:text-xl text-base" htmlFor="satuan">
+                        Satuan
+                    </label>
+                    <input
+                        id="satuan"
+                        className="border rounded-xl p-1.5 md:p-2"
+                        type="text"
+                        value={satuan}
+                        onChange={(e) => setSatuan(e.target.value)}
+                    />
                 </div>
 
                 <div className="flex flex-col md:gap-2">
@@ -141,9 +160,7 @@ const DetailStock = () => {
                             parseInt(barangMasuk) -
                             parseInt(barangKeluar)
                         }
-                        onChange={(e) => setStokAkhir(
-                            e.target.value
-                        )}
+                        onChange={(e) => setStokAkhir(e.target.value)}
                     />
                 </div>
 

@@ -24,6 +24,7 @@ export const getData_Stock = async (req, res) => {
             attributes: [
                 "id",
                 "nama_Barang",
+                "satuan",
                 "stok_awal",
                 "barang_masuk",
                 "barang_keluar",
@@ -60,9 +61,9 @@ export const updateData_Stock = async (req, res) => {
                 id : req.params.id
             }
         })
-        const {nama_Barang, stok_awal, barang_masuk, barang_keluar} = req.body
+        const {nama_Barang, satuan, stok_awal, barang_masuk, barang_keluar} = req.body
         await data_Stock.update({
-            nama_Barang, stok_awal, barang_masuk, barang_keluar, stok_akhir : stok_awal + barang_masuk - barang_keluar
+            nama_Barang, satuan, stok_awal, barang_masuk, barang_keluar, stok_akhir : stok_awal + barang_masuk - barang_keluar
         }, {
             where: {
                 id: dataStock.id
