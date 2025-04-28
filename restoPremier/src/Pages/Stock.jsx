@@ -40,6 +40,8 @@ const Stock = () => {
         cek.createdAt.split("T"[0] === dataTerkini)
     );
 
+   
+
     return (
         <MainLayout>
             <div className="flex justify-between items-center w-full">
@@ -69,7 +71,7 @@ const Stock = () => {
                 </div>
             </div>
 
-            <div className="mt-7">
+            <div className="mt-7 border-b-2 border-blue-500 pb-16">
                 <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
                     <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>

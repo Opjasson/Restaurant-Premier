@@ -1,35 +1,106 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import _ from "lodash";
 
 const SemuaData = () => {
+    const [data, setData] = useState([]);
+    const [findLower, setfindLower] = useState("");
+
+    const navigate = useNavigate();
+
+    const getData = async () => {
+        try {
+            const response = await axios.get("http://localhost:8000/stock");
+            setData(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    var date = new Date();
+
+    let dataTerkini = date.toISOString().split("T")[0];
+
+    // Merubah data tanggal menjadi format tahun-bulan-tanggal
+    const dataAsli = data.map((item) => {
+        const tanggalBaru = item.createdAt.split("T")[0];
+        return { ...item, createdAt: tanggalBaru };
+    });
+
+    // Grouping data berdasarkan tanggal data dibuat
+    const groupData = _.groupBy(dataAsli, "createdAt");
+
+    // filter data gruping
+    const filterGroping = Object.keys(groupData).filter((item) => {
+        return Object.values(groupData[item]);
+
+       
+        // console.log(item);
+
+    });
+
+    // filter data berdasarkan search
+    const searchFilter = Object.values(filterGroping).filter((item) => {
+        const words = findLower.split(" ");
+        return words.some((word) =>
+            Object.values(groupData[item]).includes(word)
+        );
+    });
+
+    console.log(searchFilter);
+
+
+
+    // const lengthData = filterNama.filter((cek) =>
+    //     cek.createdAt.split("T"[0] === dataTerkini)
+    // );
+
     return (
         <MainLayout>
-            <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
-                <h1 className="md:text-4xl text-2xl font-extrabold">
-                    Semua stock
-                </h1>
-                <p className="md:text-xl font-light">
-                    Menampilkan semua data stock
-                </p>
-            </div>
-
-            <div className="mt-7">
-                <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
-                    <h2>No</h2>
-                    <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
-                    <h2 className=" lg:w-32 w-fit lg:ml-0 mr-1.5">Satuan</h2>
-                    <h2 className=" lg:w-32 w-fit">Stock awal</h2>
-                    <h2 className=" lg:w-32 w-fit">Barang masuk</h2>
-                    <h2 className=" lg:w-32 w-fit">Barang keluar</h2>
-                    <h2 className=" lg:w-32 w-fit">Stock akhir</h2>
+            <div className="flex items-center justify-between">
+                <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
+                    <h1 className="md:text-4xl text-2xl font-extrabold">
+                        Semua stock
+                    </h1>
+                    <p className="md:text-xl font-light">
+                        Menampilkan semua data stock
+                    </p>
                 </div>
 
-                {lengthData.length > 0 ? (
-                    filterNama
-                        .filter(
-                            (a) => a.createdAt.split("T")[0] === dataTerkini
-                        )
-                        .map((item, index) => (
+                <div className="flex items-center bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm lg:w-80 w-[55%] h-fit">
+                    <input
+                        type="text"
+                        placeholder="Cari nama..."
+                        className="outline-none w-full text-sm"
+                        onChange={(e) => setfindLower(e.target.value)}
+                    />
+                    <FaMagnifyingGlass className="lg:text-2xl" />
+                </div>
+            </div>
+
+            {Object.keys(groupData).map((key, index) => (
+                <div className="mt-7 border-b-2 border-blue-500 pb-16">
+                    <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
+                        <h2>No</h2>
+                        <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
+                        <h2 className=" lg:w-32 w-fit lg:ml-0 mr-1.5">
+                            Satuan
+                        </h2>
+                        <h2 className=" lg:w-32 w-fit">Stock awal</h2>
+                        <h2 className=" lg:w-32 w-fit">Barang masuk</h2>
+                        <h2 className=" lg:w-32 w-fit">Barang keluar</h2>
+                        <h2 className=" lg:w-32 w-fit">Stock akhir</h2>
+                    </div>
+
+                    {[
+                        Object.values(groupData[key]).map((item, index) => (
                             <div
                                 onClick={() =>
                                     navigate(`Detail-stock/${item.id}`)
@@ -47,11 +118,10 @@ const SemuaData = () => {
                                 <h2 className="w-32">{item.barang_keluar}</h2>
                                 <h2 className="w-32">{item.stok_akhir}</h2>
                             </div>
-                        ))
-                ) : (
-                    <div>belum ada data</div>
-                )}
-            </div>
+                        )),
+                    ]}
+                </div>
+            ))}
         </MainLayout>
     );
 };

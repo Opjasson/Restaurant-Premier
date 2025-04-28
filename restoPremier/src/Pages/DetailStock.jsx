@@ -25,7 +25,7 @@ const DetailStock = () => {
                 setStokAwal(stock.data.stok_awal);
                 setBarangMasuk(stock.data.barang_masuk);
                 setBarangKeluar(stock.data.barang_keluar);
-                setStokAkhir(stock.data.stok_akhir);
+                setStokAkhir(stokAwal + barangMasuk - barangKeluar);
             } catch (error) {
                 console.log(error);
             }

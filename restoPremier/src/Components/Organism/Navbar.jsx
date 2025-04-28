@@ -68,8 +68,8 @@ const Navbar = () => {
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/"}>
-                        STOCK AKHIR
+                        to={"/Semua-data"}>
+                        SEMUA DATA
                     </Link>
                 </li>
             </div>
