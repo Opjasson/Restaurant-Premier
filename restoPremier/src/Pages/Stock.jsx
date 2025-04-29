@@ -40,6 +40,7 @@ const Stock = () => {
         cek.createdAt.split("T"[0] === dataTerkini)
     );
 
+   console.log(filterNama);
    
 
     return (
