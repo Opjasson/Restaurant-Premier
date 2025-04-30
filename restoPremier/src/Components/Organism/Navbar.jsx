@@ -34,7 +34,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                     className="lg:text-lg text-sm hover:text-slate-500 hover:underline"
-                    to={"/Barang-keluar"}>
+                    to={"/Analisis-chart"}>
                     ANALISIS CHART
                 </Link>
                 <Link
@@ -61,7 +61,7 @@ const Navbar = () => {
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
-                        to={"/"}>
+                        to={"/Analisis-chart"}>
                         ANALISIS CHART
                     </Link>
                 </li>

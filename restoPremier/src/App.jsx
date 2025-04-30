@@ -3,6 +3,7 @@ import Stock from "./Pages/Stock";
 import AddStock from "./Pages/AddStock";
 import DetailStock from "./Pages/DetailStock";
 import SemuaData from "./Pages/SemuaData";
+import AnalisisChart from "./Pages/AnalisisChart";
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
                     <Route path="/Add-stock" element={< AddStock/>} />
                     <Route path="/Detail-stock/:id" element={< DetailStock/>} />
                     <Route path="/Semua-data" element={< SemuaData/>} />
-                    <Route path="/Stock-akhir" element={< DetailStock/>} />
+                    <Route path="/Analisis-chart" element={< AnalisisChart/>} />
                 </Routes>
             </BrowserRouter>
         </>
