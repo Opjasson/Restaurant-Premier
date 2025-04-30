@@ -7,7 +7,6 @@ import axios from "axios";
 const Stock = () => {
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("");
-    const [filteredData, setFilteredData] = useState([]);
 
     const navigate = useNavigate();
 
@@ -28,7 +27,7 @@ const Stock = () => {
 
     let dataTerkini = date.toISOString().split("T")[0];
 
-    // console.log(dataTerkini);
+   
 
     // filter data berdasaran hasil search
     const filterNama = data.filter((item) => {
@@ -40,7 +39,7 @@ const Stock = () => {
         cek.createdAt.split("T")[0] === dataTerkini
     );
 
-   console.log(lengthData);
+//    console.log(lengthData);
    
 
     return (

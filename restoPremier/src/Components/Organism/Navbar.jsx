@@ -55,14 +55,14 @@ const Navbar = () => {
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
                         to={"/"}>
-                        BARANG MASUK
+                        STOCK BARANG
                     </Link>
                 </li>
                 <li className="mb-10">
                     <Link
                         className="text-lg hover:text-slate-500 hover:underline text-white"
                         to={"/"}>
-                        BARANG KELUAR
+                        ANALISIS CHART
                     </Link>
                 </li>
                 <li className="mb-10">
