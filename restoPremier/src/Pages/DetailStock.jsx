@@ -96,6 +96,7 @@ const DetailStock = () => {
                         className="border rounded-xl p-1.5 md:p-2"
                         type="text"
                         value={satuan}
+                        required
                         onChange={(e) => setSatuan(e.target.value)}
                     />
                 </div>
@@ -109,6 +110,7 @@ const DetailStock = () => {
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
                         value={stokAwal}
+                        required
                         onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>
@@ -124,6 +126,7 @@ const DetailStock = () => {
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
                         value={barangMasuk}
+                        required
                         onChange={(e) => setBarangMasuk(e.target.value)}
                     />
                 </div>
@@ -139,6 +142,7 @@ const DetailStock = () => {
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
                         value={barangKeluar}
+                        required
                         onChange={(e) => setBarangKeluar(e.target.value)}
                     />
                 </div>

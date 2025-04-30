@@ -52,6 +52,7 @@ const AddStock = () => {
                         onChange={(e) => setNamaBarang(e.target.value)}
                         id="namaStock"
                         className="border md:p-2 p-1.5 rounded-xl">
+                        <option value="pilih">Pilih bahan baku</option>
                         <option value="tepung terigu">Tepung Terigu</option>
                         <option value="kecap bango">Kecap Bango</option>
                         <option value="beras">Beras</option>
@@ -72,6 +73,7 @@ const AddStock = () => {
                         id="satuan"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="text"
+                        required
                         onChange={(e) => setSatuan(e.target.value)}
                     />
                 </div>
@@ -84,6 +86,7 @@ const AddStock = () => {
                         id="namaStock"
                         className="border rounded-xl p-1.5 md:p-2"
                         type="number"
+                        required
                         onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>

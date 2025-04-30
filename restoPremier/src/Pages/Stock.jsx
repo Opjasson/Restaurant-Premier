@@ -37,10 +37,10 @@ const Stock = () => {
     });
 
     const lengthData = filterNama.filter((cek) =>
-        cek.createdAt.split("T"[0] === dataTerkini)
+        cek.createdAt.split("T")[0] === dataTerkini
     );
 
-   console.log(filterNama);
+   console.log(lengthData);
    
 
     return (
@@ -90,6 +90,7 @@ const Stock = () => {
                         )
                         .map((item, index) => (
                             <div
+                            key={index}
                                 onClick={() =>
                                     navigate(`Detail-stock/${item.id}`)
                                 }
@@ -108,7 +109,9 @@ const Stock = () => {
                             </div>
                         ))
                 ) : (
-                    <div>belum ada data</div>
+                    <div className="px-5">
+                        <p className="text-xl mt-5">Belum ada data hari ini!</p>
+                    </div>
                 )}
             </div>
         </MainLayout>
