@@ -25,7 +25,6 @@ const SemuaData = () => {
 
     var date = new Date();
 
-    let dataTerkini = date.toISOString().split("T")[0];
 
     // Merubah data tanggal menjadi format tahun-bulan-tanggal
     const dataAsli = data.map((item) => {
@@ -49,15 +48,11 @@ const SemuaData = () => {
         );
     });
 
-    // console.log(groupData);
-    // console.log(data);
-
+   
     console.log(groupData["2025-04-26"]);
     console.log(findLower);
 
-    // const lengthData = filterNama.filter((cek) =>
-    //     cek.createdAt.split("T"[0] === dataTerkini)
-    // );
+
 
     return (
         <MainLayout>
