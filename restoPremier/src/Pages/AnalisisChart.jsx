@@ -45,7 +45,6 @@ const AnalisisChart = () => {
     return (
         <MainLayout>
             <div className="md:w-3/4 mx-auto">
-                <p>test</p>
                 <Bar
                     data={{
                         labels: dataNow.map((e) => e.nama_Barang),
