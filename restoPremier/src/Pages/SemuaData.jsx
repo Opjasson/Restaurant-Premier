@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import _ from "lodash";
 
 const SemuaData = () => {
@@ -23,9 +23,6 @@ const SemuaData = () => {
         getData();
     }, []);
 
-    var date = new Date();
-
-
     // Merubah data tanggal menjadi format tahun-bulan-tanggal
     const dataAsli = data.map((item) => {
         const tanggalBaru = item.createdAt.split("T")[0];
@@ -40,23 +37,24 @@ const SemuaData = () => {
         return Object.values(groupData[item]);
     });
 
-    // filter data berdasarkan search
-    const searchFilter = Object.values(filterGroping).filter((item) => {
-        const words = findLower.split(" ");
-        return words.some((word) =>
-            Object.values(groupData[item]).includes(word)
-        );
-    });
+    // set up print
 
-   
-    console.log(groupData["2025-04-26"]);
-    console.log(findLower);
+    const handlePrint = () => {
+        const Navbar = document.querySelector('nav')
+        const HeadPage = document.querySelector('#headPage')
+        const PrintButton = document.querySelector('#printButton')
+        const TombolKembali = document.querySelector('#tombolKembali')
 
-
+        Navbar.setAttribute("hidden", "")
+        HeadPage.setAttribute("hidden", "")
+        PrintButton.setAttribute("hidden", "")
+        window.print()
+        TombolKembali.removeAttribute("hidden")
+    };
 
     return (
         <MainLayout>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between" id="headPage">
                 <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                     <h1 className="md:text-4xl text-2xl font-extrabold">
                         Semua stock
@@ -76,7 +74,28 @@ const SemuaData = () => {
             </div>
 
             {groupData[findLower] ? (
-                <div className="mt-7 border-b-2 border-blue-500 pb-16">
+                <div
+                    className="mt-7 border-b-2 border-blue-500 pb-16"
+                    id="mainContent">
+
+                    <button
+                        id="printButton"
+                        onClick={handlePrint}
+                        className="hover:cursor-pointer hover:underline">
+                        Print
+                    </button>
+
+                    <button
+                    hidden
+                        id="tombolKembali"
+                        onClick={() => navigate("/")}
+                        className="hover:cursor-pointer flex hover:underline">
+                        <svg width="20" height="20" className="rotate-180">
+                            <path d="M10 0 L20 10 L10 20 Z" fill="#000" />
+                        </svg>
+                        Kembali
+                    </button>
+
                     <p>{findLower}</p>
                     <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                         <h2>No</h2>

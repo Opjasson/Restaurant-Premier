@@ -7,7 +7,6 @@ import _ from "lodash";
 
 const AnalisisChart = () => {
     const [data, setData] = useState([]);
-    const [labels, setLabels] = useState([]);
 
     const getData = async () => {
         try {
@@ -31,9 +30,6 @@ const AnalisisChart = () => {
         const tanggalBaru = item.createdAt.split("T")[0];
         return { ...item, createdAt: tanggalBaru };
     });
-
-    // Grouping data berdasarkan tanggal data dibuat
-    let groupData = _.groupBy(dataAsli, "createdAt");
 
     // filter data gruping
     console.log(
