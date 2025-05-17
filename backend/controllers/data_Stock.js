@@ -88,3 +88,18 @@ export const updateData_Stock = async (req, res) => {
         res.status(404).json({ msg: error.message });
     }
 };
+
+
+export const deleteById = async (req, res) => {
+    try {
+        await data_Stock.destroy({
+            where : {
+                id : req.params.id
+            }
+        })
+        res.status(200).json({msg : "Data berhasil dihapus!"})
+    } catch (error) {
+        res.status(400).json({msg : error.message})
+    }
+
+}
