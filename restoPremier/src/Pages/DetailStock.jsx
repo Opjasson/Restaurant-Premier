@@ -10,11 +10,11 @@ const DetailStock = () => {
     const [stokAwal, setStokAwal] = useState(0);
     const [barangMasuk, setBarangMasuk] = useState(0);
     const [barangKeluar, setBarangKeluar] = useState(0);
-    const [stokAkhir, setStokAkhir] = useState(0);
 
     const navigate = useNavigate();
 
     useEffect(() => {
+        // fungsi untuk mendapatkan semua data
         const getData = async () => {
             try {
                 const stock = await axios.get(
@@ -32,6 +32,7 @@ const DetailStock = () => {
         getData();
     }, [id]);
 
+    // fungsi untuk update data
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
@@ -49,6 +50,17 @@ const DetailStock = () => {
         }
     };
 
+    // fungsi untuk menghapus data
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.delete(`http://localhost:8000/stock/${id}`);
+            alert("Data berhasil dihapus!");
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <MainLayout>
@@ -171,7 +183,10 @@ const DetailStock = () => {
                         Buat
                     </button>
 
-                    <button type="button" className="bg-red-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-red-600 rounded-xl text-white font-extrabold">
+                    <button
+                        type="button"
+                        onClick={handleDelete}
+                        className="bg-red-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-red-600 rounded-xl text-white font-extrabold">
                         Hapus
                     </button>
                 </div>
