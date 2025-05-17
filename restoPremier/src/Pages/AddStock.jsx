@@ -62,6 +62,7 @@ const AddStock = () => {
                         <option value="telor">Telor</option>
                         <option value="tempe">Tempe</option>
                         <option value="tahu">Tahu</option>
+                        <option value="galon">galon</option>
                     </select>
                 </div>
 

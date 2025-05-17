@@ -25,7 +25,6 @@ const DetailStock = () => {
                 setStokAwal(stock.data.stok_awal);
                 setBarangMasuk(stock.data.barang_masuk);
                 setBarangKeluar(stock.data.barang_keluar);
-                setStokAkhir(stokAwal + barangMasuk - barangKeluar);
             } catch (error) {
                 console.log(error);
             }
@@ -84,6 +83,7 @@ const DetailStock = () => {
                         <option value="telor">Telor</option>
                         <option value="tempe">Tempe</option>
                         <option value="tahu">Tahu</option>
+                        <option value="galon">galon</option>
                     </select>
                 </div>
 
