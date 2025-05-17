@@ -38,10 +38,9 @@ const DetailStock = () => {
             await axios.patch(`http://localhost:8000/stock/${id}`, {
                 nama_Barang: namaBarang,
                 satuan: satuan,
-                stok_awal: stokAwal,
-                barang_masuk: barangMasuk,
-                barang_keluar: barangKeluar,
-                stok_akhir: stokAkhir,
+                stok_awal: parseInt(stokAwal),
+                barang_masuk: parseInt(barangMasuk),
+                barang_keluar: parseInt(barangKeluar),
             });
             alert("Data berhasil dirubah");
             navigate("/");
@@ -164,7 +163,6 @@ const DetailStock = () => {
                             parseInt(barangMasuk) -
                             parseInt(barangKeluar)
                         }
-                        onChange={(e) => setStokAkhir(e.target.value)}
                     />
                 </div>
 
