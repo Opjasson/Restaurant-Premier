@@ -49,8 +49,6 @@ const DetailStock = () => {
         }
     };
 
-    console.log(satuan);
-    
 
     return (
         <MainLayout>
@@ -166,11 +164,17 @@ const DetailStock = () => {
                     />
                 </div>
 
-                <button
-                    type="submit"
-                    className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
-                    Buat
-                </button>
+                <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
+                        Buat
+                    </button>
+
+                    <button type="button" className="bg-red-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-red-600 rounded-xl text-white font-extrabold">
+                        Hapus
+                    </button>
+                </div>
             </form>
             {/* Form End */}
         </MainLayout>
