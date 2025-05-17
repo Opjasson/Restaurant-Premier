@@ -75,6 +75,8 @@ const DetailStock = () => {
             <form
                 onSubmit={handleUpdate}
                 className="flex flex-col gap-5 md:w-2/3 mx-auto pb-20">
+                {/* formulir menu nama barang */}
+
                 <div className="flex flex-col md:gap-2">
                     <label htmlFor="namaStock" className="md:text-xl text-base">
                         Nama Stock
@@ -95,7 +97,9 @@ const DetailStock = () => {
                         <option value="galon">galon</option>
                     </select>
                 </div>
+                {/* ------------ */}
 
+                {/* formulir satuan */}
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="satuan">
                         Satuan
@@ -110,6 +114,9 @@ const DetailStock = () => {
                     />
                 </div>
 
+                {/* ------------ */}
+
+                {/* formulir stok awal */}
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="namaStock">
                         Stok awal
@@ -123,7 +130,9 @@ const DetailStock = () => {
                         onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>
+                {/* ----------- */}
 
+                {/* formulir barang masuk */}
                 <div className="flex flex-col md:gap-2">
                     <label
                         className="md:text-xl text-base"
@@ -139,7 +148,9 @@ const DetailStock = () => {
                         onChange={(e) => setBarangMasuk(e.target.value)}
                     />
                 </div>
+                {/* ------------ */}
 
+                {/* formulir barang keluar */}
                 <div className="flex flex-col md:gap-2">
                     <label
                         className="md:text-xl text-base"
@@ -155,7 +166,9 @@ const DetailStock = () => {
                         onChange={(e) => setBarangKeluar(e.target.value)}
                     />
                 </div>
+                {/* ------------ */}
 
+                {/* formulir stok akhir */}
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="stokAkhir">
                         Stok akhir{" "}
@@ -175,7 +188,9 @@ const DetailStock = () => {
                         }
                     />
                 </div>
+                {/* ------------ */}
 
+                {/* bagian tombol buat dan hapus */}
                 <div className="flex justify-center">
                     <button
                         type="submit"
@@ -190,6 +205,7 @@ const DetailStock = () => {
                         Hapus
                     </button>
                 </div>
+                {/* ----------- */}
             </form>
             {/* Form End */}
         </MainLayout>

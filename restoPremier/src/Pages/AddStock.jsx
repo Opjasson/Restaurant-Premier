@@ -4,14 +4,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddStock = () => {
+    // useState = tempat penyimpanan data sementara
     const [nama_Barang, setNamaBarang] = useState("");
     const [stok_awal, setStokAwal] = useState();
     const [satuan, setSatuan] = useState(0);
+    // -------------
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
+    // fungsi untuk menambahkan stok
     const handleAddStock = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             await axios.post("http://localhost:8000/stock", {
                 nama_Barang,
@@ -19,17 +22,18 @@ const AddStock = () => {
                 stok_awal,
                 barang_masuk: 0,
                 barang_keluar: 0,
-                stok_akhir: 0
+                stok_akhir: 0,
             });
-            alert("Stock berhasil ditambahkan!")
-            navigate("/")
+            alert("Stock berhasil ditambahkan!");
+            navigate("/");
         } catch (error) {
             console.log(error);
         }
-        
     };
+    // ----------------
 
     return (
+        // halaman tambah data stock
         <MainLayout>
             <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                 <h1 className="md:text-4xl text-2xl font-extrabold">
@@ -44,6 +48,7 @@ const AddStock = () => {
             <form
                 onSubmit={handleAddStock}
                 className="flex flex-col gap-5 md:w-2/3 mx-auto pb-20">
+                {/* formulir nama stock */}
                 <div className="flex flex-col md:gap-2">
                     <label htmlFor="namaStock" className="md:text-xl text-base">
                         Nama Stock
@@ -65,7 +70,9 @@ const AddStock = () => {
                         <option value="galon">galon</option>
                     </select>
                 </div>
+                {/* --------------- */}
 
+                {/* formulir satuan */}
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="satuan">
                         Satuan
@@ -78,7 +85,9 @@ const AddStock = () => {
                         onChange={(e) => setSatuan(e.target.value)}
                     />
                 </div>
+                {/* ----------------- */}
 
+                {/* formulir stok awal */}
                 <div className="flex flex-col md:gap-2">
                     <label className="md:text-xl text-base" htmlFor="namaStock">
                         Stok awal
@@ -91,7 +100,8 @@ const AddStock = () => {
                         onChange={(e) => setStokAwal(e.target.value)}
                     />
                 </div>
-
+                {/* ---------------- */}
+                
                 <button
                     type="submit"
                     className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
@@ -100,6 +110,7 @@ const AddStock = () => {
             </form>
             {/* Form End */}
         </MainLayout>
+        // -------------
     );
 };
 

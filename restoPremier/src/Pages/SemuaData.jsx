@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import _ from "lodash";
 
 const SemuaData = () => {
+    // useState adalah tempat penyimpanan sementara
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("null");
+    // ------
 
+    // navigate untuk berpindah ke halaman lainnya
     const navigate = useNavigate();
+    // --------
 
+    // untuk mendapatkan data semua
     const getData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/stock");
@@ -18,24 +23,30 @@ const SemuaData = () => {
             console.log(error);
         }
     };
+    // -------
 
+    // useEffect berfungsi untuk menyiapkan data saat halaman baru dibuka
     useEffect(() => {
         getData();
     }, []);
+    // --------
 
     // Merubah data tanggal menjadi format tahun-bulan-tanggal
     const dataAsli = data.map((item) => {
         const tanggalBaru = item.createdAt.split("T")[0];
         return { ...item, createdAt: tanggalBaru };
     });
+    // --------
 
     // Grouping data berdasarkan tanggal data dibuat
     const groupData = _.groupBy(dataAsli, "createdAt");
+    // --------
 
     // filter data gruping
     const filterGroping = Object.keys(groupData).filter((item) => {
         return Object.values(groupData[item]);
     });
+    // --------
 
     // set up print
     const handlePrint = () => {
@@ -52,10 +63,10 @@ const SemuaData = () => {
     };
     // end set up print
 
-    console.log(findLower);
-
     return (
+        // Tampilan halaman semua data
         <MainLayout>
+            {/* head judul halaman */}
             <div className="flex items-center justify-between" id="headPage">
                 <div className="mb-10 bg-blue-500 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
                     <h1 className="md:text-4xl text-2xl font-extrabold">
@@ -74,12 +85,15 @@ const SemuaData = () => {
                     />
                 </div>
             </div>
+            {/* end head judul halaman */}
 
+            {/* menampilkan data atau list data */}
             {findLower === "null" ? (
                 filterGroping.map((key, index) => (
                     <div
                         className="mt-7 border-b-2 border-blue-500 pb-16"
                         key={index}>
+                        {/* menampilkan semua data jika belum memasukan tanggal */}
                         <p>{key}</p>
                         <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                             <h2>No</h2>
@@ -99,9 +113,6 @@ const SemuaData = () => {
                             Object.values(groupData[key]).map((item, index) => (
                                 <div
                                     key={index}
-                                    onClick={() =>
-                                        navigate(`Detail-stock/${item.id}`)
-                                    }
                                     className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400 border">
                                     <h2 key={index + 1} className="">
                                         {index + 1}
@@ -121,16 +132,19 @@ const SemuaData = () => {
                                 </div>
                             )),
                         ]}
+                        {/* ---------- */}
                     </div>
                 ))
             ) : groupData[findLower] ? (
                 <div
                     className="mt-7 border-b-2 border-blue-500 pb-16"
                     id="mainContent">
+                    {/* menampilkan data berdasarkan tanggal yang dimasukan */}
+
                     <button
                         id="printButton"
                         onClick={handlePrint}
-                        className="hover:cursor-pointer hover:underline">
+                        className="hover:cursor-pointer hover:underline bg-green-500 px-2.5 rounded-lg">
                         Print
                     </button>
 
@@ -175,9 +189,12 @@ const SemuaData = () => {
                             <h2 className="w-32">{test.stok_akhir}</h2>
                         </div>
                     ))}
+
+                    {/* -------------- */}
                 </div>
             ) : (
                 <div>
+                    {/*jika data pada tanggal yang dimasukan tidak ada */}
                     <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                         <h2>No</h2>
                         <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
@@ -194,7 +211,9 @@ const SemuaData = () => {
                     </p>
                 </div>
             )}
+            {/* end menampilkan list data */}
         </MainLayout>
+        // end tampilan halaman data
     );
 };
 

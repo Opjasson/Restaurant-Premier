@@ -5,11 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Stock = () => {
+    // useState = tempat penyimpanan sementara
     const [data, setData] = useState([]);
     const [findLower, setfindLower] = useState("");
+    // ------
 
+    // berfungsi untuk berpindah ke halaman lain
     const navigate = useNavigate();
+    // -------
 
+    // mendapatkan semua data
     const getData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/stock");
@@ -18,32 +23,38 @@ const Stock = () => {
             console.log(error);
         }
     };
+    // ---------
 
+    // fungsi untuk memuat data saat halaman dimuat
     useEffect(() => {
         getData();
     }, []);
+    // ----------
 
+    // untuk mendapatkan data tanggal saat ini
     var date = new Date();
+    // ----------
 
+    // mengubah format data tanggal menjadi tahun-bulan-tanggal
     let dataTerkini = date.toISOString().split("T")[0];
+    // ----------
 
-   
-
-    // filter data berdasaran hasil search
+    // filter data berdasaran hasil search nama
     const filterNama = data.filter((item) => {
         const words = findLower.split(" ");
         return words.some((word) => item.nama_Barang.includes(word));
     });
+    // -----------
 
-    const lengthData = filterNama.filter((cek) =>
-        cek.createdAt.split("T")[0] === dataTerkini
+    // menfilter data supaya hanya menampilkan data pada hari ini
+    const lengthData = filterNama.filter(
+        (cek) => cek.createdAt.split("T")[0] === dataTerkini
     );
-
-//    console.log(lengthData);
-   
+    // -----------
 
     return (
         <MainLayout>
+            {/* head halaman stock */}
             <div className="flex justify-between items-center w-full">
                 <div>
                     <h1 className="lg:text-2xl text-sm text-blue-500">
@@ -70,6 +81,9 @@ const Stock = () => {
                     </Link>
                 </div>
             </div>
+            {/* ------------------ */}
+
+            {/* table untuk menampilkan data */}
 
             <div className="mt-7 border-b-2 border-blue-500 pb-16">
                 <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
@@ -89,7 +103,7 @@ const Stock = () => {
                         )
                         .map((item, index) => (
                             <div
-                            key={index}
+                                key={index}
                                 onClick={() =>
                                     navigate(`Detail-stock/${item.id}`)
                                 }
@@ -113,6 +127,8 @@ const Stock = () => {
                     </div>
                 )}
             </div>
+
+            {/* ------------- */}
         </MainLayout>
     );
 };

@@ -8,6 +8,7 @@ import _ from "lodash";
 const AnalisisChart = () => {
     const [data, setData] = useState([]);
 
+    // mendapatkan data dari backend
     const getData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/stock");
@@ -16,6 +17,7 @@ const AnalisisChart = () => {
             console.log(error);
         }
     };
+    // --------------
 
     useEffect(() => {
         getData();
@@ -23,7 +25,6 @@ const AnalisisChart = () => {
 
     let tanggal = new Date();
     console.log(tanggal.toISOString().split("T")[0]);
-    
 
     // Merubah data tanggal menjadi format tahun-bulan-tanggal
     let dataAsli = data.map((item) => {
@@ -40,9 +41,9 @@ const AnalisisChart = () => {
     var dataNow = dataAsli.filter(
         (a) => a.createdAt === tanggal.toISOString().split("T")[0]
     );
-    
 
     return (
+        // tampilan data ke dalam chart
         <MainLayout>
             <div className="md:w-3/4 mx-auto">
                 <Bar
