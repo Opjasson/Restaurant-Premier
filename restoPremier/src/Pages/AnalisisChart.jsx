@@ -4,9 +4,12 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import axios from "axios";
 import _ from "lodash";
+import { useNavigate } from "react-router-dom";
 
 const AnalisisChart = () => {
     const [data, setData] = useState([]);
+
+    const navigate = useNavigate();
 
     // mendapatkan data dari backend
     const getData = async () => {
@@ -18,6 +21,13 @@ const AnalisisChart = () => {
         }
     };
     // --------------
+
+    // cek data login
+    useEffect(() => {
+        !localStorage.getItem("info")
+            ? navigate("/login")
+            : navigate(`/Analisis-chart`);
+    });
 
     useEffect(() => {
         getData();
