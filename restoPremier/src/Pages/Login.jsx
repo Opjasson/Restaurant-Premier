@@ -36,7 +36,7 @@ const Login = () => {
     return (
         <div className="bg-perpustakaan h-screen bg-cover border ">
             <div className="lg:w-2/4 text-center mx-auto bg-blue-700 text-white mt-36 p-5 rounded-xl">
-                <h1 className="text-3xl font-bold">Login</h1>
+                <h1 className="text-3xl font-bold">Login Stock Bahan Baku</h1>
                 <p className="text-lg">
                     Silahkan Login Menggunakan Akun Yang Sudah Terdaftar
                 </p>
@@ -63,15 +63,14 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <p className="text-red-500 font-semibold">{invalid}</p>
-                    <Button
-                        style="bg-green-600 hover:bg-green-700 mx-auto w-40"
-                        title="Login"
-                        type="submit"
-                    />
                 </form>
 
                 <div className="flex w-2/3 mx-auto ml-auto mt-7 justify-between border-t-2 pt-5 items-center">
-                    <p>Belum mempunyai akun?</p>
+                    <Button
+                        style="bg-green-600 hover:bg-green-700"
+                        title="Login"
+                        type="submit"
+                    />
                     <Button
                         title="Registrasi"
                         onClick={() => navigate("/registrasi")}
