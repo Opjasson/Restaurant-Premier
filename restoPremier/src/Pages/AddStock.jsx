@@ -13,15 +13,13 @@ const AddStock = () => {
 
     const navigate = useNavigate();
 
-
-    // cek data login
+ // cek data login
     useEffect(() => {
-        !localStorage.getItem("info")
-            ? navigate("/login")
-            : navigate(`/Add-stock`);
-    });
-
-    
+        if (!localStorage.getItem("info")) {
+            navigate("/login");
+        }
+    }, [navigate]);
+  
     // fungsi untuk menambahkan stok
     const handleAddStock = async (e) => {
         e.preventDefault();

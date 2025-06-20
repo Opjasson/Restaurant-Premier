@@ -1,10 +1,12 @@
 import React from "react";
 import { premier } from "../../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import Button from "../Moleculs/Button";
 
 const Navbar = () => {
+
+    const navigate = useNavigate()
     const handleDropDown = () => {
         const getElement = document.querySelector("#dropDown");
         switch (getElement.hasAttribute('hidden')) {
@@ -21,6 +23,7 @@ const Navbar = () => {
 
     const logOut = () => {
         localStorage.clear()
+        navigate("/login")
     }
 
     return (

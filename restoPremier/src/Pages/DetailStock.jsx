@@ -13,13 +13,12 @@ const DetailStock = () => {
 
     const navigate = useNavigate();
 
-    // cek data login
-    useEffect(() => {
-        !localStorage.getItem("info")
-            ? navigate("/login")
-            : navigate(`/Detail-stock/${id}`);
-    })
-    
+     // cek data login
+        useEffect(() => {
+            if (!localStorage.getItem("info")) {
+                navigate("/login");
+            }
+        }, [navigate]);
 
     useEffect(() => {
         // fungsi untuk mendapatkan semua data

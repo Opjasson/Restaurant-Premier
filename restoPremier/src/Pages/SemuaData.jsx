@@ -25,12 +25,12 @@ const SemuaData = () => {
     };
     // -------
 
-// cek data login
-useEffect(() => {
-    !localStorage.getItem("info")
-        ? navigate("/login")
-        : navigate("/Semua-data");
-})
+    useEffect(() => {
+        if (!localStorage.getItem("info")) {
+            navigate("/login");
+        }
+    }, [navigate]);
+
 
     // useEffect berfungsi untuk menyiapkan data saat halaman baru dibuka
     useEffect(() => {

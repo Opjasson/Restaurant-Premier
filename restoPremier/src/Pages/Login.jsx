@@ -26,7 +26,6 @@ const Login = () => {
             });
             navigate("/");
             localStorage.setItem("info", response.data["response"].email);
-            localStorage.setItem("id", response.data["response"].id);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setInvalid(error.response?.data["message"]);

@@ -22,13 +22,13 @@ const AnalisisChart = () => {
     };
     // --------------
 
-    // cek data login
-    useEffect(() => {
-        !localStorage.getItem("info")
-            ? navigate("/login")
-            : navigate(`/Analisis-chart`);
-    });
-
+     // cek data login
+        useEffect(() => {
+            if (!localStorage.getItem("info")) {
+                navigate("/login");
+            }
+        }, [navigate]);
+ 
     useEffect(() => {
         getData();
     }, []);
