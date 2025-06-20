@@ -1,11 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
-import data_Stock from "./model/Model_Stock.js";
+import user from "./model/Model_User.js";
 import stockRouter from "./routers/dataStock_Route.js";
 import cors from "cors";
 
+
 // (async () => {
-//     await data_Stock.sync();
+//     await user.sync();
 // })();
 
 dotenv.config();
