@@ -2,6 +2,7 @@ import React from "react";
 import { premier } from "../../assets";
 import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
+import Button from "../Moleculs/Button";
 
 const Navbar = () => {
     const handleDropDown = () => {
@@ -16,9 +17,12 @@ const Navbar = () => {
             default:
                 break;
         }
-        
-        
     };
+
+    const logOut = () => {
+        localStorage.clear()
+        
+    }
 
     return (
         <nav className="flex items-center justify-between px-8 w-full">
@@ -42,6 +46,8 @@ const Navbar = () => {
                     to={"/Semua-data"}>
                     SEMUA DATA
                 </Link>
+
+                <Button onClick={() => alert("hallo")} style="bg-red-500 hover:bg-red-700" title="Logout"/>
             </div>
 
             <IoMenu onClick={() => handleDropDown()} className="lg:hidden block text-xl hover:cursor-pointer" />
