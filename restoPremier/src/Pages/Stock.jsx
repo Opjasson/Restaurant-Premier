@@ -25,6 +25,13 @@ const Stock = () => {
     };
     // ---------
 
+    // cek data login
+    useEffect(() => {
+        !localStorage.getItem("info")
+            ? navigate("/login")
+            : navigate("/");
+    });
+
     // fungsi untuk memuat data saat halaman dimuat
     useEffect(() => {
         getData();

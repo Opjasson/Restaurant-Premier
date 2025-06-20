@@ -21,7 +21,6 @@ const Navbar = () => {
 
     const logOut = () => {
         localStorage.clear()
-        
     }
 
     return (
@@ -47,7 +46,7 @@ const Navbar = () => {
                     SEMUA DATA
                 </Link>
 
-                <Button onClick={() => alert("hallo")} style="bg-red-500 hover:bg-red-700" title="Logout"/>
+                <Button onClick={logOut} style="bg-red-500 hover:bg-red-700" title="Logout"/>
             </div>
 
             <IoMenu onClick={() => handleDropDown()} className="lg:hidden block text-xl hover:cursor-pointer" />
