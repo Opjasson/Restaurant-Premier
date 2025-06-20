@@ -21,7 +21,7 @@ const Register = () => {
             });
             alert('Berhasil membuat akun. anda bisa login')
             navigate("/login")
-        } catch (error: unknown) {
+        } catch (error) {
             if (axios.isAxiosError(error)) {
                 setInvalid(error.response?.data["msg"]);
             }
