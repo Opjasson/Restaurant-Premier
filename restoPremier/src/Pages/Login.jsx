@@ -63,20 +63,20 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <p className="text-red-500 font-semibold">{invalid}</p>
-                </form>
 
-                <div className="flex w-2/3 mx-auto ml-auto mt-7 justify-between border-t-2 pt-5 items-center">
-                    <Button
-                        style="bg-green-600 hover:bg-green-700"
-                        title="Login"
-                        type="submit"
-                    />
-                    <Button
-                        title="Registrasi"
-                        onClick={() => navigate("/registrasi")}
-                        style="bg-slate-700 hover:bg-slate-800"
-                    />
-                </div>
+                    <div className="flex w-2/3 mx-auto ml-auto mt-7 justify-between border-t-2 pt-5 items-center">
+                        <Button
+                            style="bg-green-600 hover:bg-green-700"
+                            title="Login"
+                            type="submit"
+                        />
+                        <Button
+                            title="Registrasi"
+                            onClick={() => navigate("/registrasi")}
+                            style="bg-slate-700 hover:bg-slate-800"
+                        />
+                    </div>
+                </form>
             </div>
         </div>
     );
