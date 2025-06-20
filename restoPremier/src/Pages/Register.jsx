@@ -15,14 +15,14 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-           await axios.post("http://localhost:8000/user", {
+            await axios.post("http://localhost:8000/user", {
                 email,
                 role,
                 password,
                 confPassword,
             });
-            alert('Berhasil membuat akun. anda bisa login')
-            navigate("/login")
+            alert("Berhasil membuat akun. anda bisa login");
+            navigate("/login");
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setInvalid(error.response?.data["msg"]);
@@ -30,10 +30,9 @@ const Register = () => {
         }
     };
 
-    
     return (
         <div className="bg-perpustakaan h-screen bg-cover border ">
-            <div className="lg:w-2/4 text-center mx-auto bg-blue-700 text-white mt-24 p-5 rounded-xl">
+            <div className="lg:w-2/4 text-center mx-auto bg-blue-700 text-white mt-5 p-5 rounded-xl">
                 <h1 className="text-3xl font-bold">Registrasi</h1>
                 <p className="text-lg">
                     Silahkan Registrasi Dahulu Sebelum Login
@@ -81,21 +80,20 @@ const Register = () => {
 
                     <p className="text-red-500 font-semibold">{invalid}</p>
 
-                    <Button
-                        style="bg-green-600 hover:bg-green-700 mx-auto w-40"
-                        title="Registrasi"
-                        type="submit"
-                    />
+                    <div className="flex w-2/3 mx-auto ml-auto mt-7 justify-between border-t-2 pt-5 items-center">
+                        <Button
+                            style="bg-green-600 hover:bg-green-700"
+                            title="Registrasi"
+                            type="submit"
+                        />
+                        <Button
+                            style="bg-slate-600 hover:bg-slate-700"
+                            title="Login"
+                            onClick={() => navigate("/login")}
+                            type="button"
+                        />
+                    </div>
                 </form>
-
-                <div className="flex w-2/3 mx-auto ml-auto mt-7 justify-between border-t-2 pt-5 items-center">
-                    <p>Sudah mempunyai akun?</p>
-                    <Button
-                        title="Login"
-                        onClick={() => navigate("/login")}
-                        style="bg-slate-700 hover:bg-slate-800"
-                    />
-                </div>
             </div>
         </div>
     );
