@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import user from "./model/Model_User.js";
 import stockRouter from "./routers/dataStock_Route.js";
 import cors from "cors";
-import userRouter from "./routers/users_Route.js"
+import userRouter from "./routers/users_Route.js";
+import login from "./routers/auth_Routes.js";
 
 // (async () => {
 //     await user.sync();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(stockRouter);
 app.use(userRouter);
+app.use(login);
 
 app.listen(process.env.PORT, () => {
     try {
