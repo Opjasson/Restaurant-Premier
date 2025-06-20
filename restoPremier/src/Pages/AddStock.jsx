@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AddStock = () => {
     // useState = tempat penyimpanan data sementara
@@ -12,6 +13,15 @@ const AddStock = () => {
 
     const navigate = useNavigate();
 
+
+    // cek data login
+    useEffect(() => {
+        !localStorage.getItem("info")
+            ? navigate("/login")
+            : navigate(`/Add-stock`);
+    });
+
+    
     // fungsi untuk menambahkan stok
     const handleAddStock = async (e) => {
         e.preventDefault();
