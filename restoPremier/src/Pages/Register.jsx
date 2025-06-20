@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Input from "../components/moleculs/Input";
-import Button from "../components/moleculs/Button";
+import Button from "../Components/Moleculs/Button";
+import Input from "../Components/Moleculs/Input";
 import { useState } from "react";
 import axios from "axios";
 
