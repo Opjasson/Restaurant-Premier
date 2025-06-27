@@ -27,6 +27,9 @@ const AnalisisChart = () => {
             if (!localStorage.getItem("info")) {
                 navigate("/login");
             }
+            if (localStorage.getItem("info") === "f&b division") {
+                navigate("/Semua-data");
+            }
         }, [navigate]);
  
     useEffect(() => {

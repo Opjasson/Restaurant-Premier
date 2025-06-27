@@ -13,13 +13,16 @@ const AddStock = () => {
 
     const navigate = useNavigate();
 
- // cek data login
+    // cek data login
     useEffect(() => {
         if (!localStorage.getItem("info")) {
             navigate("/login");
         }
+        if (localStorage.getItem("info") === "f&b division") {
+            navigate("/Semua-data");
+        }
     }, [navigate]);
-  
+
     // fungsi untuk menambahkan stok
     const handleAddStock = async (e) => {
         e.preventDefault();
@@ -109,7 +112,7 @@ const AddStock = () => {
                     />
                 </div>
                 {/* ---------------- */}
-                
+
                 <button
                     type="submit"
                     className="bg-blue-500 w-1/4 mx-auto px-3 py-2 hover:cursor-pointer hover:bg-blue-600 rounded-xl text-white font-extrabold">
