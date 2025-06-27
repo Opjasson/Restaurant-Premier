@@ -50,14 +50,29 @@ const Register = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <Input
-                        htmlFor="role"
-                        labelTitle="Role"
-                        id="role"
-                        placeholder="Masukan role"
-                        type="text"
-                        onChange={(e) => setRole(e.target.value)}
-                    />
+                    <div className="flex flex-col mx-auto items-start">
+                        <label
+                            htmlFor="namaStock"
+                            className="md:text-xl text-base">
+                            Role
+                        </label>
+                        <select
+                            onChange={(e) => setRole(e.target.value)}
+                            id="namaStock"
+                            className="border border-black md:p-2 p-1.5 rounded-xl w-56 text-black">
+                            <option value="pilih" className="text-black">
+                                Pilih jenis role
+                            </option>
+                            <option
+                                value="leader kitchen"
+                                className="text-black">
+                                Leader kitchen
+                            </option>
+                            <option value="f&b division" className="text-black">
+                                F&B division
+                            </option>
+                        </select>
+                    </div>
 
                     <Input
                         htmlFor="password"
