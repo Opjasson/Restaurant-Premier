@@ -25,7 +25,7 @@ const Login = () => {
                 password,
             });
             navigate("/");
-            localStorage.setItem("info", response.data["response"].email);
+            localStorage.setItem("info", response.data["response"].role);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 setInvalid(error.response?.data["message"]);
