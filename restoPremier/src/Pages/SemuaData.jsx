@@ -31,7 +31,6 @@ const SemuaData = () => {
         }
     }, [navigate]);
 
-
     // useEffect berfungsi untuk menyiapkan data saat halaman baru dibuka
     useEffect(() => {
         getData();
@@ -166,6 +165,9 @@ const SemuaData = () => {
                         Kembali
                     </button>
 
+                    <div className="border border-blue-400">
+                        <h1 className="text-center font-bold text-2xl">LAPORAN DATA STOK BAHAN BAKU RESTO PREMIER HOTEL TEGAL</h1>
+                    </div>
                     <p>{findLower}</p>
                     <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                         <h2>No</h2>
