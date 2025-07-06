@@ -19,12 +19,10 @@ app.use(stockRouter);
 app.use(userRouter);
 app.use(login);
 
-app.listen(process.env.PORT, () => {
-    try {
-        console.log(
-            `server running on port http://localhost:${process.env.PORT}`
-        );
-    } catch (error) {
-        console.log(error.message);
+app.listen(process.env.PORT, (error) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(`server running on http://localhost:${process.env.PORT}`);
     }
 });
