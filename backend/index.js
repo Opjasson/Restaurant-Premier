@@ -1,14 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
 import user from "./model/Model_User.js";
+import Login from "./model/Model_login.js"
 import stockRouter from "./routers/dataStock_Route.js";
 import cors from "cors";
 import userRouter from "./routers/users_Route.js";
 import login from "./routers/auth_Routes.js";
 
-// (async () => {
-//     await user.sync();
-// })();
+(async () => {
+    await Login.sync();
+})();
 
 dotenv.config();
 const app = express();
