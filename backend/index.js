@@ -7,9 +7,9 @@ import cors from "cors";
 import userRouter from "./routers/users_Route.js";
 import login from "./routers/auth_Routes.js";
 
-(async () => {
-    await Login.sync();
-})();
+// (async () => {
+//     await Login.sync();
+// })();
 
 dotenv.config();
 const app = express();
