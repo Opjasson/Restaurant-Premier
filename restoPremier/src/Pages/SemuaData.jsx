@@ -119,9 +119,42 @@ const SemuaData = () => {
             {/* menampilkan data atau list data */}
 
             <div className="mt-7 border-b-2 border-blue-500 pb-16">
-                {/* menampilkan semua data jika belum memasukan tanggal */}
+                <button
+                    id="printButton"
+                    onClick={handlePrint}
+                    className="hover:cursor-pointer hover:underline bg-green-500 px-2.5 rounded-lg">
+                    Print
+                </button>
+
+                <button
+                    hidden
+                    id="tombolKembali"
+                    onClick={() => navigate("/")}
+                    className="hover:cursor-pointer flex hover:underline">
+                    <svg width="20" height="20" className="rotate-180">
+                        <path d="M10 0 L20 10 L10 20 Z" fill="#000" />
+                    </svg>
+                    Kembali
+                </button>
+                {findLower1 !== null ? (
+                    <div className="flex w-72 justify-between">
+                        <p>{findLower1.split("T")[0]}</p>
+                        <p>------</p>
+                        <p>{findLower2.split("T")[0]}</p>
+                    </div>
+                ) : (
+                    <div>null</div>
+                )}
+
+                <div className="border border-blue-400">
+                    <h1 className="text-center font-bold text-2xl">
+                        LAPORAN DATA STOK BAHAN BAKU RESTO PREMIER HOTEL TEGAL
+                    </h1>
+                </div>
+
                 <div className="flex justify-between px-5 py-3 bg-blue-500 rounded-xl lg:text-lg text-[12px] text-white font-bold shadow-slate-500 shadow-md">
                     <h2>No</h2>
+                    <h2 className="lg:ml-0 ml-1.5 lg:w-40">Tanggal</h2>
                     <h2 className="lg:ml-0 ml-1.5 lg:w-40">Nama barang</h2>
                     <h2 className=" lg:w-32 w-fit lg:ml-0 mr-1.5">Satuan</h2>
                     <h2 className=" lg:w-32 w-fit">Stock awal</h2>
@@ -137,6 +170,9 @@ const SemuaData = () => {
                             className="flex justify-between hover:cursor-pointer hover:bg-slate-300 lg:px-5 px-2 py-3 lg:text-lg text-sm font-extralight mt-2 border-b-2 border-slate-400 border">
                             <h2 key={index + 1} className="">
                                 {index + 1}
+                            </h2>
+                            <h2 className=" w-40 ml-3 capitalize">
+                                {item.createdAt.split("T")[0]}
                             </h2>
                             <h2 className=" w-40 ml-3 capitalize">
                                 {item.nama_Barang}
