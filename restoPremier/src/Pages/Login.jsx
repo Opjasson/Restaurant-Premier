@@ -75,6 +75,12 @@ const Login = () => {
                             onClick={() => navigate("/registrasi")}
                             style="bg-slate-700 hover:bg-slate-800"
                         />
+
+                        <Button
+                            title="Lupa Password"
+                            onClick={() => navigate("/lupa-pass")}
+                            style="bg-slate-700 hover:bg-slate-800"
+                        />
                     </div>
                 </form>
             </div>

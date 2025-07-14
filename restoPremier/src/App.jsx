@@ -6,6 +6,7 @@ import SemuaData from "./Pages/SemuaData";
 import AnalisisChart from "./Pages/AnalisisChart";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import LupaPass from "./Pages/Lupa-Pass";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/" element={<Stock />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/registrasi" element={<Register />} />
+                    <Route path="/lupa-pass" element={<LupaPass/>} />
                     <Route path="/Add-stock" element={<AddStock />} />
                     <Route path="/Detail-stock/:id" element={<DetailStock />} />
                     <Route path="/Semua-data" element={<SemuaData />} />
